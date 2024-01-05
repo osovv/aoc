@@ -9,3 +9,5 @@ maven-classpath.properties
 .idea/
 *.iml
 .cpcache
+.lsp
+.clj-kondo
