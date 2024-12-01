@@ -1,5 +1,7 @@
 # aoc
 
+https://adventofcode.com/2023
+
 ## Running a Clojure day
 
 1. Get into day's directorty
