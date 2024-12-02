@@ -1,4 +1,5 @@
 import { slidingWindows } from "@std/collections";
+import { generateSubarrays } from "../helper.ts";
 
 export function isSafeDelta(delta: number) {
   return delta >= 1 && delta <= 3;
@@ -15,9 +16,7 @@ export const isSafeLevelPair =
     }
   };
 
-export function isSafeReport(report: string): boolean {
-  const items = report.split(" ").map(Number);
-
+function isSafeCore(items: number[]): boolean {
   if (items.length === 0) {
     return false;
   }
@@ -40,4 +39,18 @@ export function isSafeReport(report: string): boolean {
   });
 
   return isSafe;
+}
+
+export function isSafeReport(report: string): boolean {
+  const items = report.split(" ").map(Number);
+
+  return isSafeCore(items);
+}
+
+export function isSafeReportNew(report: string): boolean {
+  const items = report.split(" ").map(Number);
+
+  const subItems = generateSubarrays(items);
+
+  return subItems.map(isSafeCore).some(Boolean);
 }

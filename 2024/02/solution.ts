@@ -1,5 +1,5 @@
 import { readLines } from "../helper.ts";
-import { isSafeReport } from "./core.ts";
+import { isSafeReport, isSafeReportNew } from "./core.ts";
 
 const reports = readLines("02/input.txt");
 
@@ -16,3 +16,17 @@ for (const report of reports) {
 }
 
 console.log("PART 1 RESULT", safeReportsCount);
+
+// PART 2
+
+let newSafeReportsCount = 0;
+
+for (const report of reports) {
+  const isSafe = isSafeReportNew(report);
+
+  if (isSafe) {
+    newSafeReportsCount += 1;
+  }
+}
+
+console.log("PART 2 RESULT", newSafeReportsCount);
