@@ -7,6 +7,7 @@ const input = readFile("01/input.txt");
 const first: number[] = [],
   second: number[] = [];
 
+// PART 1
 input
   .split("\n")
   .filter((line) => line.length > 0)
@@ -22,10 +23,31 @@ const sortedSecond = second.toSorted(comp);
 
 const zipped = zip(sortedFirst, sortedSecond);
 
-let acc = 0;
+let distance = 0;
 
 zipped.forEach(([a, b]) => {
-  acc += Math.abs(a - b);
+  distance += Math.abs(a - b);
 });
 
-console.log(acc);
+console.log("PART 1 RESULT", distance);
+
+// PART 2
+
+const acc = new Map<number, number>();
+
+for (const item of second) {
+  if (acc.has(item)) {
+    acc.set(item, acc.get(item)! + 1);
+  } else {
+    acc.set(item, 1);
+  }
+}
+
+let similarityScore = 0;
+for (const item of first) {
+  if (acc.has(item)) {
+    similarityScore += item * acc.get(item)!;
+  }
+}
+
+console.log("PART 2 RESULT", similarityScore);
