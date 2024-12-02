@@ -1,21 +1,16 @@
-import { readFile } from "../helper.ts";
+import { readLines } from "../helper.ts";
 import { zip } from "@std/collections";
 
-console.log(Deno.cwd());
-
-const input = readFile("01/input.txt");
+const input = readLines("01/input.txt");
 const first: number[] = [],
   second: number[] = [];
 
 // PART 1
-input
-  .split("\n")
-  .filter((line) => line.length > 0)
-  .forEach((line) => {
-    const [firstPart, secondPart] = line.split("   ").map(Number);
-    first.push(firstPart);
-    second.push(secondPart);
-  });
+input.forEach((line) => {
+  const [firstPart, secondPart] = line.split("   ").map(Number);
+  first.push(firstPart);
+  second.push(secondPart);
+});
 const comp = (a: number, b: number) => a - b;
 
 const sortedFirst = first.toSorted(comp);

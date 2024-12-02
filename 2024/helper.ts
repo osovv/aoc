@@ -1,4 +1,5 @@
-import * as path from "jsr:@std/path";
-export const readFile = (path: string): string => {
-  return Deno.readTextFileSync(path);
+export const readLines = (path: string): string[] => {
+  return Deno.readTextFileSync(path)
+    .split("\n")
+    .filter((line) => line.length > 0);
 };
